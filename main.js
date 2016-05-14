@@ -4,7 +4,6 @@
   JavaScript provides interactive elements of web page 
   */
 
-//Purpose of Animation oject - track how long animation has been running, draw appropriate frame
 var rightLimit = 700;
 var botLimit = 600;
 
@@ -50,29 +49,15 @@ function Background(game) {
     this.game = game;
     this.ctx = game.ctx;
     this.image = AM.getAsset("./img/MAGABackground.png");
-	this.lyinTedAsset = AM.getAsset("./img/LyinTed.png");
-	this.crookedHillaryAsset = AM.getAsset("./img/CrookedHillary.png");
 	this.degree = 0;
 }
 
 Background.prototype.draw = function (ctx) {
     ctx.drawImage(this.image, 0, 0);
-	this.degree += 0.1;
-	if (this.game.scoreMessage.innerHTML.length > 0) {
-		ctx.drawImage(this.crookedHillaryAsset, 300, 175, 150, 150);
-	} else {
-		ctx.save();
-		ctx.translate( 375, 275);
-		ctx.rotate(this.degree*Math.PI/180);
-		ctx.translate(0, 0);
-		ctx.drawImage(this.lyinTedAsset, -75, -75, 150, 150);
-		ctx.restore();
-	}
     ctx.font = "14px Arial";
     var arrayLength = this.game.activeVoteCoins.length;
     for (var i = 0; i < arrayLength; i++) {
         var coin = this.game.activeVoteCoins[i];
-
         ctx.drawImage(
     FLAGS, coin.flagx, coin.flagy, coin.width, coin.height, coin.x, coin.y, coin.width * 0.2, coin.height * 0.2);
         ctx.fillStyle = "black";

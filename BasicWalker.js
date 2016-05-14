@@ -64,7 +64,7 @@ BasicWalker.prototype.update = function () {
 			this.takeStepTowards(this.game.leader.x, this.game.leader.y, 100, this.game.characters);
 		}
 	} else {
-		this.takeStepTowards(300,175, 10)
+		this.takeStepTowards(300,175, 40)
 	}
 }
 
@@ -85,6 +85,7 @@ BasicWalker.prototype.setDirectionTowards =  function(x, y) {
 }
 
 BasicWalker.prototype.walkInRandomDirection = function() {
+	console.log("here");
 	if(this.stepsInCurrentDir < 40) {
 		this.walkInDirection(this.direction);
 		this.stepsInCurrentDir ++;
@@ -119,6 +120,15 @@ BasicWalker.prototype.takeStepTowards = function(x, y, distanceAway) {
 	} else {
 		if(x == 300 && y == 175) {
 			this.game.leader  = this;
+			if(this instanceof AssassinWalker) {
+				this.game.scoreBoard.innerHTML = "Assassin is the leader";
+			} else if(this instanceof ReporterWalker) {
+				this.game.scoreBoard.innerHTML = "Reporter is the leader";
+			} else if(this instanceof IvankaWalker) {
+				this.game.scoreBoard.innerHTML = "Ivanka is the leader";
+			} else {
+				this.game.scoreBoard.innerHTML = "Cartel is the leader";
+			}
 		}
 	}
 }
